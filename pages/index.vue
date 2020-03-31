@@ -1,5 +1,11 @@
 <template>
   <div>
+    <!-- <transition name="fade">
+      <div ref="tooltip" class="mytooltip p-4 mb-4" v-if="showInfo">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat velit minima sed laudantium porro voluptatem saepe dolores fugit, veniam tempora dolorum obcaecati nobis aut asperiores. Impedit eveniet excepturi illum rerum.
+      </div>
+    </transition> -->
+
     <div class="bg-blue pb-1">
       <div class="container">
         <div class="row">
@@ -52,30 +58,44 @@
             <div class="container">
               <div class="row">
                 <div class="col-md-6 pl-0">
-                  <div class="p-5 pb-5 mb-4 bg-blue rounded text-center text-white">
-                    <strong>INT. DISINFECTANT FOGGING</strong>
+                  <div class="tab p-5 pb-5 mb-4 bg-blue rounded text-center text-white" @click="toggleCard()" @mousemove="readMousePos" @mouseenter="showInfo = true;" @mouseleave="showInfo = false;">
+                    <strong>
+                      INT. DISINFECTANT FOGGING
+                    </strong>
                   </div>
                 </div>
+                <!-- <div class="col-md-6 pl-0">
+                  <div class="p-5 pb-5 mb-4 bg-blue rounded text-center text-white" @mousemove="readMousePos" @mouseenter="showInfo = true" @mouseout="showInfo = false">
+                    <strong>INT. DISINFECTANT FOGGING</strong>
+                  </div>
+                  <div class="px-4 mb-4" v-show="showInfo">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat velit minima sed laudantium porro voluptatem saepe dolores fugit, veniam tempora dolorum obcaecati nobis aut asperiores. Impedit eveniet excepturi illum rerum.
+                  </div>
+                </div> -->
                 <div class="col-md-6 pr-0">
-                  <div class="p-5 pb-5 mb-4 bg-blue rounded text-center text-white">
+                  <div class="tab p-5 pb-5 mb-4 bg-blue rounded text-center text-white" @click="toggleCard()" >
                     <strong>SOLAR PANELS</strong>
                   </div>
                 </div>
                 <div class="col-md-6 pl-0">
-                  <div class="p-5 pb-5 mb-4 bg-blue rounded text-center text-white">
+                  <div class="tab p-5 pb-5 mb-4 bg-blue rounded text-center text-white" @click="toggleCard()" >
                     <strong>WATER PROOFING</strong>
                   </div>
                 </div>
                 <div class="col-md-6 pr-0">
-                  <div class="p-5 pb-5 mb-4 bg-blue rounded text-center text-white">
+                  <div class="tab p-5 pb-5 mb-4 bg-blue rounded text-center text-white" @click="toggleCard()" >
                     <strong>WINDOW CLEANING</strong>
                   </div>
                 </div>
                 <div class="col-md-6 pl-0">
-                  <div class="p-5 pb-5 bg-blue rounded text-center text-white">
+                  <div class="tab p-5 pb-5 bg-blue rounded text-center text-white" @click="toggleCard()" >
                     <strong>BUILDING RESTORATION</strong>
                   </div>
                 </div>
+                <!-- <div class="col-md-6 pl-0">
+                  {{ mouseX }} <br>
+                  {{ mouseY }}
+                </div> -->
               </div>
             </div>
           </div>
@@ -146,10 +166,40 @@
 
 <script>
 export default {
+  data() {
+    return {
+      mouseX: 0,
+      mouseY: 0,
+      showInfo: false
+    }
+  },
   methods: {
     submitRequest: function () {
       alert('Thank you for your estimate request, we will contact you shortly!')
+    },
+    readMousePos: function (event) {
+      // if (this.showInfo) {
+      //    this.mouseX = event.offsetX
+      //   this.mouseY = event.offsetY
+      //   // this.mouseX = event.pageX
+      //   // this.mouseY = event.pageY
+      //   console.log(event)
+
+      //   // console.log(this.$refs.tooltip)
+      //   if (this.$refs.tooltip.style) {
+      //     this.$refs.tooltip.style.top = event.pageY - 8 + 'px'
+      //     this.$refs.tooltip.style.left = event.pageX + 26 + 'px'
+      //   }
+      // }
+    },
+    toggleCard: function () {
+      alert('You clicked me!')
     }
+  },
+  mounted() {
+    // console.log(window)
+    // document.addEventListener('mousemove', this.readMousePos, false);
+    // console.log(document)    
   },
 }
 </script>
@@ -209,7 +259,32 @@ ul li {
   border-radius: 10px;
 }
 
-button:hover {
+button:hover, .tab {
   cursor: pointer;
+}
+
+/* .tooltip-wrapper:hover .tooltip {
+  display: block;
+} */
+
+.mytooltip {
+  /* display: block; */
+  background-color: white;
+  position: absolute;
+  z-index: 1000;
+  border-radius: 10px;
+  width: 500px;
+  /* height: 300px; */
+  transition: opacity .25s ease-in-out;
+  /* top: 40px;
+  left: 40px; */
+  box-shadow: 4px 4px 10px 2px rgba(0, 0, 0, .30);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
