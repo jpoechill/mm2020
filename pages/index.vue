@@ -141,13 +141,13 @@
                 <div class="pl-0 col-md-6">
                   Name
                   <div class="w-100">
-                    <input type="text" class="w-100" name="" id="">
+                    <input type="text" class="w-100 input-text" name="" id="">
                   </div>
                 </div>
                 <div class="pr-0 col-md-6">
                   Email
                   <div class="w-100">
-                    <input type="text" class="w-100" name="" id="">
+                    <input type="text" class="w-100 input-text" name="" id="">
                   </div>
                 </div>
                 <div class="col-md-12 mt-4 px-0">
@@ -157,7 +157,7 @@
                 <div class="col-md-12 mt-4 mb-2 px-0">
                   What is 2+2?
                   <div class="w-100">
-                    <input type="text" class="w-100" name="" id="">
+                    <input type="text" class="w-100 input-text" name="" id="">
                   </div>
                 </div>
                 <div class="col-md-12 mt-4 text-center">
@@ -269,7 +269,7 @@ strong {
   letter-spacing: 1px;;
 }
 
-input[type="text"], textarea {
+.input-text, textarea {
   border: none !important;
   background-color: #E7E7E7 !important;
   border-radius: 20px !important;
