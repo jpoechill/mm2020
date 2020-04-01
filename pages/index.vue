@@ -270,13 +270,13 @@ strong {
 }
 
 input[type="text"], textarea {
-  border: none;
-  background-color: #E7E7E7;
-  border-radius: 20px;
-  padding: 10px;
-  padding-left: 16px;
-  margin-top: 10px;
-  outline: none;
+  border: none !important;
+  background-color: #E7E7E7 !important;
+  border-radius: 20px !important;
+  padding: 10px !important;
+  padding-left: 16px !important;
+  margin-top: 10px !important;
+  outline: none !important;
 }
 
 ul li {
