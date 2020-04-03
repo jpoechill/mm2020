@@ -25,7 +25,7 @@
     
     <div class="container mt-4">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 hidden" ref="hero" :class="{ 'fade-in' : showHero }">
           <img src="/cover.jpg" class="w-100" alt="">
         </div>
       </div>
@@ -199,12 +199,21 @@ export default {
     return {
       mouseX: 0,
       mouseY: 0,
+      fadeElements: {
+        showInfo: false,
+        showGoals: false,
+        showWork: false,
+        showServices: false,
+        showRequest: false,
+        showContact: false
+      },
+      showHero: false,
       showInfo: false,
       showGoals: false,
       showWork: false,
       showServices: false,
       showRequest: false,
-      showContact: false
+      showContact: false,
     }
   },
   methods: {
@@ -235,9 +244,12 @@ export default {
       let contactPos = this.$refs.contactTopper.offsetTop
       let workPos = this.$refs.work.offsetTop
       let goalsPos = this.$refs.goals.offsetTop
+      let heroPos = this.$refs.hero.offsetTop
 
+      if (currBottomScroll >= (heroPos + 40)) {
+        this.showHero = true
+      }
 
-      console.log(this.servicesPos)
       if (currBottomScroll >= (servicesPos + 40)) {
         this.showServices = true
       }
