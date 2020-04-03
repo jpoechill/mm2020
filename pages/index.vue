@@ -1,10 +1,5 @@
 <template>
   <div>
-    <!-- <transition name="fade">
-      <div ref="tooltip" class="mytooltip p-4 mb-4" v-if="showInfo">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat velit minima sed laudantium porro voluptatem saepe dolores fugit, veniam tempora dolorum obcaecati nobis aut asperiores. Impedit eveniet excepturi illum rerum.
-      </div>
-    </transition> -->
 
     <div class="bg-blue pb-1">
       <div class="container">
@@ -27,6 +22,7 @@
         </div>
       </div>
     </div>
+    
     <div class="container mt-4">
       <div class="row">
         <div class="col-md-12">
@@ -36,21 +32,25 @@
     </div>
     <div class="container">
       <div class="row">
-        <div class="col-md-6 mt-4">
+        <div class="col-md-6 mt-4 hidden" ref="goals" :class="{ 'fade-in' : showGoals }">
           <div class="p-4 border-top-blue pb-5 bg-white">
             <strong>OUR GOALS</strong><br><br>
-            M&M is a commercial exterior building maintenance and service company. Our work includes everything from regular window and building cleaning, waterproofing, to historical restorations. There is no building out of our reach, as we specialize in all types of aerial lift and suspension methods from bosuns chair work, boom lifts, scissor lifts, 2 point adjustable swing stage scaffolding, to the latest BMU rig operations. Our skills and trade include: professional window washing, scratch glass removal, pressure washing, chemical cleaning, paint & protective coatings, building sealants, caulking & waterproofing.
+            M&M is a commercial exterior building maintenance and service company. Our work includes everything from regular window and building cleaning, waterproofing, to historical restorations. <br><br>
+            There is no building out of our reach, as we specialize in all types of aerial lift and suspension methods from bosuns chair work, boom lifts, scissor lifts, 2 point adjustable swing stage scaffolding, to the latest BMU rig operations. <br><br>
+            Our skills and trade include: professional window washing, scratch glass removal, pressure washing, chemical cleaning, paint & protective coatings, building sealants, caulking & waterproofing. <br><br>
           </div>
         </div>
-        <div class="col-md-6 mt-4">
+        <div class="col-md-6 mt-4 hidden" ref="work" :class="{ 'fade-in' : showWork }">
           <div class="p-4 pb-5 border-top-blue bg-white">
             <strong>OUR WORK</strong><br><br>
-            With over 10 years in the building services business, M&M was established to compete with the toppling prices of the other companies in the industry. We are IICRC certified in water and fire damage restoration and can take on emergency projects across the country. Our primary clients include major GC’s, property management companies, commercial real estate, building owners and facility maintenance management teams. We bid on projects within 48 hrs and provide testing/mockups of the work being performed. We pride ourselves in being a one stop shop for all your buildings exterior needs.
+            With over 10 years in the building services business, M&M was established to compete with the toppling prices of the other companies in the industry. We are IICRC certified in water and fire damage restoration and can take on emergency projects across the country. <br><br>
+            Our primary clients include major GC’s, property management companies, commercial real estate, building owners and facility maintenance management teams. <br><br>
+            We bid on projects within 48 hrs and provide testing/mockups of the work being performed. We pride ourselves in being a one stop shop for all your buildings exterior needs.
           </div>
         </div>
       </div>
     </div>
-    <div class="container mt-4">
+    <div class="container mt-4 hidden" ref="servicesTopper" :class="{ 'fade-in' : showServices }">
       <div class="row">
         <div class="col-md-12">
           <div class="p-4 pb-5 border-top-blue bg-white">
@@ -129,9 +129,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> 
     </div>
-    <div class="container mt-4">
+    <div class="container mt-4 hidden" ref="requestTopper" :class="{ 'fade-in' : showRequest }">
       <div class="row">
         <div class="col-md-12">
           <div class="p-4 pb-5 border-top-blue bg-white">
@@ -173,7 +173,7 @@
         </div>
       </div>
     </div>
-    <div class="container">
+    <div class="container hidden" ref="contactTopper" :class="{ 'fade-in' : showContact }">
       <div class="row">
         <div class="col-md-12 mt-4">
           <div class="p-4 pb-5 border-top-blue bg-white">
@@ -199,12 +199,64 @@ export default {
     return {
       mouseX: 0,
       mouseY: 0,
-      showInfo: false
+      showInfo: false,
+      showGoals: false,
+      showWork: false,
+      showServices: false,
+      showRequest: false,
+      showContact: false
     }
   },
   methods: {
     submitRequest: function () {
       alert('Thank you for your estimate request, we will contact you shortly!')
+    },
+    handleScroll (currentY) {
+      let prevScroll = this.scrollPos
+      let currScroll
+
+      console.log('Y: ' + typeof currentY)
+
+      if (typeof currentY !== 'object') {
+        currScroll = currentY
+      } else {
+        currScroll = window.scrollY
+      }
+
+      console.log(currScroll)
+      console.log('Page height: ' + window.innerHeight)
+      console.log('Y scroll: ' + window.scrollY)
+      console.log('Sum: ' + (window.innerHeight + window.scrollY))
+      // console.log(this.$refs.servicesTopper.offsetTop)
+
+      let currBottomScroll = window.innerHeight + currScroll
+      let servicesPos = this.$refs.servicesTopper.offsetTop
+      let requestPos = this.$refs.requestTopper.offsetTop
+      let contactPos = this.$refs.contactTopper.offsetTop
+      let workPos = this.$refs.work.offsetTop
+      let goalsPos = this.$refs.goals.offsetTop
+
+
+      console.log(this.servicesPos)
+      if (currBottomScroll >= (servicesPos + 40)) {
+        this.showServices = true
+      }
+
+      if (currBottomScroll >= (requestPos + 40)) {
+        this.showRequest = true
+      }
+
+      if (currBottomScroll >= (contactPos + 40)) {
+        this.showContact = true
+      }
+
+      if (currBottomScroll >= (workPos + 40)) {
+        this.showWork = true
+      }
+
+      if (currBottomScroll >= (goalsPos + 40)) {
+        this.showGoals = true
+      }
     },
     readMousePos: function (event) {
       // if (this.showInfo) {
@@ -234,10 +286,10 @@ export default {
       this.showInfo = !this.showInfo
     }
   },
-  mounted() {
-    // console.log(window)
-    // document.addEventListener('mousemove', this.readMousePos, false);
-    // console.log(document)    
+  mounted() { 
+    this.handleScroll(window.scrollY)
+
+    window.addEventListener('scroll', this.handleScroll);
   },
 }
 </script>
@@ -301,6 +353,9 @@ button:hover, .tab {
   cursor: pointer;
 }
 
+.show {
+  display: block !important;
+}
 /* .tooltip-wrapper:hover .tooltip {
   display: block;
 } */
@@ -320,10 +375,23 @@ button:hover, .tab {
 }
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+  transition: opacity 1s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: 1000ms ease-in-out;
+  /* transform: translateX(-20px) */
+}
+
+.fade-in {
+  visibility: visible;
+  opacity: 1;
+  /* transform: translateX(0px) */
 }
 
 .animate {
