@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <div class="bg-blue pb-1">
+    <div class="bg-blue pb-2">
       <div class="container">
         <div class="row">
           <div class="col-md-7 pt-4 text-white text-uppercase">
@@ -13,9 +13,9 @@
             </ul>  
           </div>
           <div class="col-md-5 py-4 text-right text-white">
-            <button class="px-5 py-1 mt-1 button-on-dark rounded-0">
+            <button class="px-5 py-2 mt-3 button-on-dark rounded-0">
               <strong>
-                REQUEST ESTIMATE 
+                REQUEST AN ESTIMATE 
               </strong> 
             </button>
           </div>
@@ -53,79 +53,45 @@
     <div class="container mt-4 hidden" ref="servicesTopper" :class="{ 'fade-in' : showServices }">
       <div class="row">
         <div class="col-md-12">
-          <div class="p-4 pb-5 border-top-blue bg-white">
+          <div class="p-4 pb-3 border-top-blue bg-white">
             <strong>SERVICES</strong><br><br>
-            <div class="container">
-              <div class="row accordion" id="accordionExample2">
-                <div class="col-md-6 pl-0">
+            <div class="container px-0">
+              <div class="row">
+                <div class="col-lg-4" v-for="(item, index) in allItems" v-bind:key="index">
+                  <div class="tab mt-2 py-4 mb-4 bg-blue rounded text-center text-white text-uppercase">
+                    <strong>
+                      {{ item.name }}
+                    </strong>
+                  </div>
+                  <div class="px-2 mb-4">
+                    {{ item.description }}
+                    <br><br><br>
+                    <!-- Learn more. -->
+                  </div>
+                  <div class="px-2 pb-4 align-bottom text-secondary">
+                    <br><br>
+                    Learn more.
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="row accordion" id="accordionExample2">
+                <div class="col-md-3 pl-0">
                   <div>
-                    <div class="">
-                      <div class="tab p-5 pb-5 mb-4 bg-blue rounded text-center text-white" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    <div class="" v-for="(item, index) in allItems" v-bind:key="index">
+                      <div class="tab p-5 pb-5 mb-4 bg-blue rounded text-center text-white text-uppercase" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                         <strong>
-                          INT. DISINFECTANT FOGGING
+                          {{ item.name }}
                         </strong>
                       </div>
                       <div id="collapseOne" class="px-3 collapse" aria-labelledby="headingOne" data-parent="#accordionExample2">
                         <div class="mb-5">
-                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                      </div>
-                    </div>
-                    <div class="">
-                      <div class="tab p-5 pb-5 mb-4 bg-blue rounded text-center text-white" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <strong>
-                          WATERPROOFING
-                        </strong>
-                      </div>
-                      <div id="collapseTwo" class="px-3 collapse" aria-labelledby="headingTwo" data-parent="#accordionExample2">
-                        <div class="mb-5">
-                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                      </div>
-                    </div>
-                    <div class="">
-                      <div class="tab p-5 pb-5 mb-4 bg-blue rounded text-center text-white" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        <strong>
-                          BUILDING RESTORATION
-                        </strong>
-                      </div>
-                      <div id="collapseThree" class="px-3 collapse" aria-labelledby="headingThree" data-parent="#accordionExample2">
-                        <div class="mb-5">
-                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                          {{ item.description }}
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6 pr-0">
-                  <div>
-                    <div class="">
-                      <div class="tab p-5 pb-5 mb-4 bg-blue rounded text-center text-white" id="headingOne" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseOne">
-                        <strong>
-                          SOLAR PANELS
-                        </strong>
-                      </div>
-                      <div id="collapseFour" class="px-3 collapse" aria-labelledby="headingOne" data-parent="#accordionExample2">
-                        <div class="mb-5">
-                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                      </div>
-                    </div>
-                    <div class="">
-                      <div class="tab p-5 pb-5 mb-4 bg-blue rounded text-center text-white" id="headingTwo" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseTwo">
-                        <strong>
-                          WINDOW CLEANING
-                        </strong>
-                      </div>
-                      <div id="collapseFive" class="px-3 collapse" aria-labelledby="headingTwo" data-parent="#accordionExample2">
-                        <div class="mb-5">
-                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -197,6 +163,50 @@
 export default {
   data() {
     return {
+      items01: [
+        {
+          name: 'Building Cleaning',
+          description: 'Final cleanings of new construction buildings to remove dirt and debris that happens during the construction.'
+        }
+      ],
+      allItems: [
+        {
+          name: 'Building Cleaning',
+          description: 'Final cleanings of new construction buildings to remove dirt and debris that happens during the construction.'
+        },
+        {
+          name: 'Chemical Cleaning',
+          description: 'Chemical building cleaning to remove efflorescence and calcium build up from the natural elements.'
+        },
+        {
+          name: 'Solar Cleaning',
+          description: 'Cleaning of solar panels to maximize efficiency of power to your grid, to maintain longevity, and to secure and maintain your investment.'
+        },
+        {
+          name: 'Window Cleaning',
+          description: 'Regular window cleaning for any size buildings, as well as construction glass cleaning to remove oxidation and water spots.'
+        },
+        {
+          name: 'Anti-Graffiti',
+          description: 'Anti graffiti coatings are typically applied to the lower elevations of buildings to protect from the damage of graffiti vandalism.'
+        },
+        {
+          name: 'Paints & Coatings',
+          description: 'Painting services to coat your property for a pleasant look aesthetically, and moreover, to protect your building with stronger coatings.'
+        },
+        {
+          name: 'Building Sealants',
+          description: 'We offer all types of weatherproofing on a case by case basis to help protect the needs of your building.'
+        },
+        {
+          name: 'Weatherproofing',
+          description: 'We provide industrial caulking services for all exterior facades and any size building. '
+        },
+        {
+          name: 'Int. Dis. Fogging',
+          description: 'Interior fogging to disinfect/ deodorize your office space, schools, and or any commercial properties. '
+        }
+      ],
       mouseX: 0,
       mouseY: 0,
       fadeElements: {
@@ -329,8 +339,13 @@ body, html {
 }
 
 strong {
-  font-size: 24px;
+  font-size: 18px;
   letter-spacing: 1px;;
+}
+
+.align-bottom {
+  position: absolute;
+  bottom: 0;
 }
 
 .input-text, textarea {
@@ -345,7 +360,7 @@ strong {
 
 ul li {
   padding-right: 8px;
-  font-size: 20px;
+  font-size: 16px;
   letter-spacing: 1px;
 }
 
